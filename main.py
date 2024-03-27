@@ -20,4 +20,4 @@ if __name__ == '__main__':
     model_path = 'poseidon_lstm'
     tf_model.download_and_extract_model(model_url, model_path)
     model = tf_model.load_tf_model(model_path)
-    app.run(port=port=os.getenv("PORT", default=5000), debug=True)
+    app.run(port=os.getenv("PORT", default=5000), debug=True)
