@@ -3,11 +3,13 @@ import tf_model
 
 app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
+
 def main():
     if request.method == 'POST':
         text = request.form['abstractText']
-
+        
         sentences = tf_model.sentences(text)
+        model = tf_model.load_tf_model(model_path)
         predictions = tf_model.predict(sentences, model)
         struct_sents = tf_model.structure_sentences(sentences, predictions)
 
@@ -19,5 +21,4 @@ if __name__ == '__main__':
     model_url = 'https://drive.google.com/uc?export=download&id=1PUVyn7eSzAmtMF36mNHRPRFA0JVgAWY2'
     model_path = 'poseidon_lstm'
     tf_model.download_and_extract_model(model_url, model_path)
-    model = tf_model.load_tf_model(model_path)
     app.run(port=os.getenv("PORT", default=5000), debug=True)
