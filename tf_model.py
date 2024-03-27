@@ -28,6 +28,7 @@ def download_and_extract_model(model_url, destination_path='poseidon_lstm'):
         os.remove('model.zip')
 
 def sentences(abstract):
+    nltk.download('punkt')
     return nltk.sent_tokenize(abstract)
 
 def load_tf_model(path):
